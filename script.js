@@ -7,6 +7,8 @@
  * @param {string} imageSource - URL da imagem.
  * @returns {Element} Elemento de imagem do produto.
  */
+ const cap = document.querySelector('.cart__items');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -80,7 +82,6 @@ const createItems = async () => {
 };
 const adiciona = async () => {
   await createItems();
-  const cap = document.querySelector('.cart__items');
   const but = document.querySelectorAll('.item__add');
   but.forEach((value) => value.addEventListener('click', async () => {
   const pai = value.parentElement;
@@ -89,5 +90,9 @@ const adiciona = async () => {
    cap.appendChild(createCartItemElement(prod));
   }));
 };
+  cap.addEventListener('click', (event) => {
+    const evento = event.target;
+    cap.removeChild(evento);
+  });
 
 window.onload = () => { adiciona(); };
