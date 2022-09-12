@@ -12,7 +12,7 @@ test('Verifica se com parametro a função é chamada', async () => {
  });
 
  test('Verifica se ao chamar a função com o argumento "MLB1615760527" utiliza a url', async () => {
-   const url = 'https://api.mercadolibre.com/sites/MLB/search?q=MLB1615760527'
+   const url = 'https://api.mercadolibre.com/items/MLB1615760527'
    await fetchItem('MLB1615760527')
    expect(fetch).toHaveBeenCalledWith(url)
  });
