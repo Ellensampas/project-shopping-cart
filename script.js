@@ -111,12 +111,12 @@ const adiciona = async () => {
     saveCartItems(cap.innerHTML);
   });
 
-  // const botaoLimpa = async () => {
-  //   const daddy = document.getElementsByClassName('cart__items');
-  //   const chil = document.querySelectorAll('.cart__item');
-  //   const butt = document.getElementsByClassName('empty-cart');
-
-  //   daddy.removeChild(chil);
-  // };
+    const butt = document.querySelector('.empty-cart');
+    butt.addEventListener('click', () => {
+      Array.from(cap.children).forEach((elemento) => {
+        cap.removeChild(elemento);
+        saveCartItems(cap.innerHTML);
+      });
+    });
 
 window.onload = () => { adiciona(); };
