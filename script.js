@@ -8,6 +8,8 @@
  * @returns {Element} Elemento de imagem do produto.
  */
  const cap = document.querySelector('.cart__items');
+ const carrega = document.querySelector('.loading');
+ carrega.innerHTML = 'carregando...';
  cap.innerHTML = getSavedCartItems();
 
 const createProductImageElement = (imageSource) => {
@@ -94,6 +96,7 @@ const somaTudo = () => {
 // console.log(somaTudo());
 const adiciona = async () => {
   await createItems();
+  carrega.innerHTML = '';
   const but = document.querySelectorAll('.item__add');
   but.forEach((value) => value.addEventListener('click', async () => {
   const pai = value.parentElement;
