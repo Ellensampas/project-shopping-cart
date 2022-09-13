@@ -9,6 +9,7 @@
  */
  const cap = document.querySelector('.cart__items');
  const carrega = document.querySelector('.loading');
+ const daddy = document.querySelector('.container');
  carrega.innerHTML = 'carregando...';
  cap.innerHTML = getSavedCartItems();
 
@@ -96,7 +97,7 @@ const somaTudo = () => {
 // console.log(somaTudo());
 const adiciona = async () => {
   await createItems();
-  carrega.innerHTML = '';
+  daddy.removeChild(carrega);
   const but = document.querySelectorAll('.item__add');
   but.forEach((value) => value.addEventListener('click', async () => {
   const pai = value.parentElement;
