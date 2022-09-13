@@ -56,7 +56,7 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  * @param {Element} product - Elemento do produto.
  * @returns {string} ID do produto.
  */
-const getIdFromProductItem = (product) => product.querySelector('span.id').innerText;
+// const getIdFromProductItem = (product) => product.querySelector('span.id_id').innerText;
 
 /**
  * Função responsável por criar e retornar um item do carrinho.
@@ -81,21 +81,42 @@ const createItems = async () => {
   sec.appendChild(createProductItemElement(element));
  });
 };
+
+const somaTudo = () => {
+  let somaTot = 0;
+  const classePreco = document.querySelector('.total-price');
+  Array.from(cap.children).forEach((pasy) => {
+    const price = Number(pasy.innerText.split('$').pop());
+    somaTot += price;
+    classePreco.innerHTML = `$${somaTot}`;
+  });
+};  
+// console.log(somaTudo());
 const adiciona = async () => {
   await createItems();
   const but = document.querySelectorAll('.item__add');
   but.forEach((value) => value.addEventListener('click', async () => {
   const pai = value.parentElement;
   const idItem = pai.firstChild.innerText;
-  const prod = await fetchItem(idItem);
-   cap.appendChild(createCartItemElement(prod));
+  const valuess = await fetchItem(idItem);
+   cap.appendChild(createCartItemElement(valuess));
    await saveCartItems(cap.innerHTML);
+    somaTudo();
   }));
 };
   cap.addEventListener('click', (event) => {
     const evento = event.target;
     cap.removeChild(evento);
+    somaTudo();
     saveCartItems(cap.innerHTML);
   });
+
+  // const botaoLimpa = async () => {
+  //   const daddy = document.getElementsByClassName('cart__items');
+  //   const chil = document.querySelectorAll('.cart__item');
+  //   const butt = document.getElementsByClassName('empty-cart');
+
+  //   daddy.removeChild(chil);
+  // };
 
 window.onload = () => { adiciona(); };
