@@ -9,6 +9,7 @@ describe('3 - Teste a função saveCartItems', () => {
     expect(localStorage.setItem).toHaveBeenCalled()
   })
   test('Verifica se setItem foi chamado corretamente com os parametros passados', () => {
-    expect(localStorage.setItem).toHaveBeenCalledWith('cartItem', 'para2')
+    saveCartItems('MLB2197308438');
+    expect(localStorage.setItem).toHaveBeenCalledWith('cartItems', 'MLB2197308438')
   });
 });

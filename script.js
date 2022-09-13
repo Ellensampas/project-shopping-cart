@@ -8,6 +8,7 @@
  * @returns {Element} Elemento de imagem do produto.
  */
  const cap = document.querySelector('.cart__items');
+ cap.innerHTML = getSavedCartItems();
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -88,11 +89,13 @@ const adiciona = async () => {
   const idItem = pai.firstChild.innerText;
   const prod = await fetchItem(idItem);
    cap.appendChild(createCartItemElement(prod));
+   await saveCartItems(cap.innerHTML);
   }));
 };
   cap.addEventListener('click', (event) => {
     const evento = event.target;
     cap.removeChild(evento);
+    saveCartItems(cap.innerHTML);
   });
 
 window.onload = () => { adiciona(); };
